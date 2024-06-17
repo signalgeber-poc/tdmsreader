@@ -11,7 +11,7 @@
 TDMSData::TDMSData(const std::string &filename)
 : filename(filename) {
     TDMSReader tdmsReader;
-    tdmsReader.read(filename, this, false);
+    tdmsReader.read(filename, this, true);
 }
 
 TDMSData::~TDMSData() {
@@ -34,7 +34,12 @@ void TDMSData::storeObjects(const MetaData *metaData) {
                 int islash = pathName.find('/', 1);
                 std::string channelName = pathName.substr(islash+1);
                 std::string groupName = pathName.substr(0,islash);
+
                 Group *group = root.getGroup(groupName);
+                if (!group) {
+                    group = new Group(groupName);
+                    root.addGroup(group);
+                }
                 Channel *channel = group->getChannel(channelName);
                 if (channel==0) {
                     channel = new Channel(channelName);
