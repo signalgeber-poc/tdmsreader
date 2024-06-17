@@ -6,6 +6,7 @@
 class Error {
 public:
     Error(const std::string& message);
+    virtual ~Error() {}
     const std::string message;
 };
 
