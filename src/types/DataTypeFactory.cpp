@@ -13,6 +13,9 @@
 #include "types/Float128.h"
 #include "types/String.h"
 #include "types/Bool.h"
+#include "types/Timestamp.h"
+
+using namespace std; 
 
 std::map<int, const DataType*> DataTypeFactory::singletonObjects;
 
@@ -32,8 +35,11 @@ const DataType* DataTypeFactory::instanceFromIndex(unsigned int itype) {
     singletonObjects[FLOAT128] = new Float128();
     singletonObjects[STRING] = new String();
     singletonObjects[BOOL] = new Bool();
+    singletonObjects[TIMESTAMP] = new Timestamp();
   }
   if (singletonObjects.count(itype)==0) {
+    cout << "NO T? " << itype <<  "\t" << singletonObjects[itype] << endl << flush;
+
     throw IOError("Unimplented data type");
   }
   return singletonObjects[itype];
@@ -52,4 +58,5 @@ const int DataTypeFactory::FLOAT64 = 10;
 const int DataTypeFactory::FLOAT128 = 11;
 const int DataTypeFactory::STRING = 32;
 const int DataTypeFactory::BOOL = 33;
+const int DataTypeFactory::TIMESTAMP = 68;
 

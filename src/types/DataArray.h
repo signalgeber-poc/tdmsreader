@@ -15,6 +15,7 @@ public:
   unsigned int getSize() const {return size;}
   int getSizeOf() const {return sizeOf;}
   void* getData() const {return data;} 
+  const DataType* getType() const {return type;}
 private:
   const DataType *type;
   unsigned int size;
