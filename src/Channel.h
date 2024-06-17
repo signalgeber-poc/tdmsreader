@@ -16,6 +16,7 @@ public:
     void addRawData(const DataArray *data);
     unsigned int getDataCount() const;
     const DataArray* getData() const;
+    const DataArray* theData() const { return data;}
 private:
     const std::string name;
     RawDataSequence rawData;
